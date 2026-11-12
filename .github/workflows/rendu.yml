@@ -30,7 +30,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: "22", cache: npm }
       - run: npm ci
-      - run: npx remotion render src/index.ts Video p.mp4 --gl=swangle --codec h264 --crf 18 --muted --concurrency=4 --timeout 600000 --frames=${{ matrix.morceau }}
+      - run: npx remotion render src/index.ts Video p.mp4 --gl=swangle --codec h264 --crf 18 --muted --concurrency=2 --timeout 600000 --frames=${{ matrix.morceau }}
       - uses: actions/upload-artifact@v4
         with: { name: "p-${{ matrix.morceau }}", path: p.mp4, retention-days: 3 }
   assembler:
