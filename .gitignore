@@ -4,3 +4,6 @@ voix.config.json
 .env.local
 voix_brutes
 *.log
+
+!audio/
+!audio/son.aac
