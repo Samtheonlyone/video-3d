@@ -3,6 +3,7 @@
 // La vidéo appelle chargerAssets(liste) puis lit ASSETS[nom] dans son décor.
 import * as THREE from "three";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader.js";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { staticFile } from "remotion";
 
 export const ASSETS: Record<string, any> = {};
@@ -11,7 +12,8 @@ let promesse: Promise<void> | null = null;
 // liste : { nom: "assets/fichier.jpg" } ; .hdr = ciel HDR, *_diff / ciel.jpg = couleurs (sRGB), le reste = données (normales, rugosité)
 export const chargerAssets = (liste: Record<string, string>) => (promesse ??= Promise.all(Object.entries(liste).map(([nom, f]) => new Promise<void>((ok, ko) => {
   const url = staticFile(f);
-  if (f.endsWith(".hdr")) new RGBELoader().load(url, (t) => { t.mapping = THREE.EquirectangularReflectionMapping; ASSETS[nom] = t; ok(); }, undefined, ko);
+  if (f.endsWith(".glb")) new GLTFLoader().load(url, (g) => { ASSETS[nom] = g; ok(); }, undefined, ko); // modèle 3D riggé + animations
+  else if (f.endsWith(".hdr")) new RGBELoader().load(url, (t) => { t.mapping = THREE.EquirectangularReflectionMapping; ASSETS[nom] = t; ok(); }, undefined, ko);
   else new THREE.TextureLoader().load(url, (t) => {
     if (/diff|ciel/.test(f)) t.colorSpace = THREE.SRGBColorSpace;
     t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 8; ASSETS[nom] = t; ok();

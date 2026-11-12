@@ -3,6 +3,7 @@
 // Règles : décor plein et vivant (trois plans), pas trop sombre, rien ne traverse rien, personne à moins de 1,5 m de la caméra.
 import { THREE, canvasTex, glowTex, smokeTex } from "../kit/gfx";
 import { mkFlat, gait, blend, POSES, blinkAt } from "../kit/perso";
+import { perso3d } from "../kit/perso3d";
 import { hash, smooth, clamp01, lerp, seg, easeOut } from "../kit/outils";
 import type { Cam } from "../kit/camera";
 import { mat, boite, objet as add, sprite } from "../kit/formes";
@@ -12,7 +13,7 @@ import { ASSETS, tex, pbr } from "../kit/assets";
 
 // photos CC0 (Poly Haven) et ciel HDRI réel : chargés avant la première image
 const jeu = (nom: string, f: string) => ({ [nom + "_diff"]: `assets/${f}_diff.jpg`, [nom + "_nor"]: `assets/${f}_nor_gl.jpg`, [nom + "_rough"]: `assets/${f}_rough.jpg` });
-export const FICHIERS: Record<string, string> = { hdr: "assets/ciel.hdr", ciel: "assets/ciel.jpg", eau: "assets/eau_normal.jpg",
+export const FICHIERS: Record<string, string> = { hdr: "assets/ciel.hdr", ciel: "assets/ciel.jpg", eau: "assets/eau_normal.jpg", perso_test: "assets/perso_test.glb",
   ...jeu("stuc", "white_stucco"), ...jeu("argile", "clay_plaster"), ...jeu("pave", "cobblestone_floor_04"), ...jeu("dalles", "seaworn_stone_tiles"), ...jeu("bois", "brown_planks_05") };
 const V2 = (x: number, y = x) => new THREE.Vector2(x, y);
 
@@ -205,6 +206,10 @@ export function creerMonde(renderer: any) {
 
   // ------------------------------------------------------------ personnages
   const yaminaP = mkFlat(scene, { skin: "#c89a6e", hair: "#1a1008", hairStyle: "long", female: true, kid: true, shirt: "#a8432e", shirt2: "#a8432e", pants: "#e3d5b8", shoes: "#5a3e26", scale: 0.72, scarf: "#2a5a6a" });
+  const yamina3d = perso3d(scene, "perso_test", { ech: 0.5, couleur: "#a8432e", offsetYaw: 0 }); // Yamina en vrai modèle 3D (tunique rouge, taille enfant)
+  const hamid3d = perso3d(scene, "perso_test", { ech: 0.62, couleur: "#b8322a", offsetYaw: 0 }); // Hamid 3D (sur terre)
+  const garde3d = perso3d(scene, "perso_test", { ech: 0.64, couleur: "#7e2620", offsetYaw: 0 }); // le garde 3D
+  const mess3d = perso3d(scene, "perso_test", { ech: 0.6, couleur: "#d9c8a0", offsetYaw: 0 }); // le messager 3D // ESSAI : vrai modèle 3D riggé à la place de Yamina (~1,5 m)
   const hamidP = mkFlat(scene, { skin: "#b8845a", hair: "#2a1a10", beard: true, stubble: true, wrinkle: true, shirt: "#b8322a", pants: "#e8e0d0", hat: "#f2ede0" });
   const gardeP = mkFlat(scene, { skin: "#b88a62", hair: "#1a1008", beard: true, shirt: "#7e2620", pants: "#e3dccb", hat: "#b8302a", build: 1.1 });
   const messP = mkFlat(scene, { skin: "#c89a6e", hair: "#1a1008", stubble: true, shirt: "#d9c8a0", pants: "#7a6a50", hat: "#f2ede0" });
@@ -256,14 +261,18 @@ export function creerMonde(renderer: any) {
         const J = gait(Y.mode, Y.dist, t, 1); blend(J, barque, POSES.assis); blend(J, barque, { a1: 0.9, e1: 0.9, a2: 0.9, e2: 0.9, lean: 0.1 }); blend(J, sj, { t1: 1.0, k1: 1.4, t2: 0.9, k2: 1.2, a1: 2.2, a2: 2.2 }); blend(J, tombe, { ...POSES.assis, lean: 0.35, a1: 0.9, e1: 0.4, a2: 0.7, e2: 0.6 });
         blend(J, smooth(42.6, 43.2, t) * (1 - smooth(50, 51, t)), { lean: 0.12, e1: 0.5, a1: 0.5 });
         const fac = barque > 0.5 ? 0 : t > EV.chute && t < 42.4 ? Math.atan2(-(H.x - Y.x), -(H.z - Y.z)) : t > 49.5 ? Math.atan2(-(H.x - Y.x), -(H.z - Y.z)) : Y.fac;
-        poser2(yaminaP, Y.x, (barque > 0.5 ? pont : alt(Y.z)) + (barque > 0.5 ? 0 : 0.8 * sj), Y.z, fac, J); yaminaP.setFace(parle("yamina", t) ? "talkw" : t > EV.choc ? "scared" : "neutral", blinkAt(t, 0.3)); }
+        poser2(yaminaP, Y.x, (barque > 0.5 ? pont : alt(Y.z)) + (barque > 0.5 ? 0 : 0.8 * sj), Y.z, fac, J); yaminaP.setFace(parle("yamina", t) ? "talkw" : t > EV.choc ? "scared" : "neutral", blinkAt(t, 0.3));
+        const u3 = barque < 0.5; yaminaP.root.visible = !u3; yamina3d.holder.visible = u3; // 3D sur terre, à plat dans la barque (pas de clip assis)
+        if (u3) yamina3d.set(t, Y.x, alt(Y.z), Y.z, fac, Y.mode === "run" ? 3.2 : Y.mode === "walk" ? 1.5 : 0); }
       { const Ha = hamid(t), dansEau = smooth(10.4, 11.1, t) * (1 - smooth(14.6, 15.4, t)), assis = smooth(15.2, 15.6, t) * (1 - smooth(25.4, 26.0, t)), quai = smooth(25.6, 26.6, t);
         const J = gait(Ha.mode, Ha.dist, t, 2); blend(J, assis, POSES.assis); blend(J, dansEau, { a1: 2.4 + 0.4 * Math.sin(t * 5), e1: 0.3, a2: 2.2 - 0.4 * Math.sin(t * 5), e2: 0.4 });
         const bas = t < EV.obus2 ? 0.58 + wv(5.5, 12, t) * 0.6 : 0.58 + wv(Ha.x, Ha.z, t) * 0.6, yb = t < 10.4 ? bas : lerp(bas, -1.05 + wv(Ha.x, Ha.z, t) * 0.5, dansEau), y = lerp(yb, SOL, quai) + (t > 10.4 && t < 11.2 ? 1.2 * Math.sin(Math.PI * seg(t, 10.4, 11.2)) : 0);
         const fac = t < 10.4 ? 0.4 : dansEau > 0.3 ? Math.atan2(-(H.x - Ha.x), -(H.z - Ha.z)) : assis > 0.5 ? (t > 17.2 && t < 21 ? 0 : Math.PI) : Ha.fac;
-        poser2(hamidP, Ha.x, y + (t > 14.6 && t < 15.4 ? 0.4 * smooth(14.6, 15.4, t) : 0), Ha.z, fac, J); hamidP.setFace(parle("hamid", t) ? "talk" : t > EV.choc ? "scared" : "neutral", blinkAt(t, 0.6)); }
-      { const M = messager(t), J = gait(M.mode, M.dist, t, 3); blend(J, smooth(55.4, 55.8, t) * (1 - smooth(56.8, 57.2, t)), { a1: 2.2, e1: 0.4 }); messP.root.visible = t > 49 && M.z < 133; poser2(messP, M.x, alt(M.z), M.z, M.fac, J); messP.setFace(parle("messager", t) ? "talk" : "scared", blinkAt(t, 0.1)); }
-      { const G = garde(t), J = gait(G.mode, G.dist, t, 4); blend(J, smooth(60.9, 61.3, t) * (1 - smooth(62.5, 63, t)), { a2: 2.0, e2: 0.5 }); gardeP.root.visible = t > 55; poser2(gardeP, G.x, 9.25, G.z, G.mode === "stand" ? Math.atan2(-(H.x - G.x), -(H.z - G.z)) : G.fac, J); gardeP.setFace(parle("garde", t) ? "talk" : "neutral", blinkAt(t, 0.8)); }
+        poser2(hamidP, Ha.x, y + (t > 14.6 && t < 15.4 ? 0.4 * smooth(14.6, 15.4, t) : 0), Ha.z, fac, J); hamidP.setFace(parle("hamid", t) ? "talk" : t > EV.choc ? "scared" : "neutral", blinkAt(t, 0.6));
+        const hu3 = quai > 0.5; hamidP.root.visible = !hu3; hamid3d.holder.visible = hu3; // 3D une fois sur le quai, à plat dans l'eau/la barque
+        if (hu3) hamid3d.set(t, Ha.x, SOL, Ha.z, fac, Ha.mode === "run" ? 3.2 : Ha.mode === "walk" ? 1.5 : 0); }
+      { const M = messager(t), J = gait(M.mode, M.dist, t, 3); blend(J, smooth(55.4, 55.8, t) * (1 - smooth(56.8, 57.2, t)), { a1: 2.2, e1: 0.4 }); const vis = t > 49 && M.z < 133; messP.root.visible = false; mess3d.holder.visible = vis; if (vis) mess3d.set(t, M.x, alt(M.z), M.z, M.fac, M.mode === "run" ? 3.2 : M.mode === "walk" ? 1.5 : 0); }
+      { const G = garde(t), fac = G.mode === "stand" ? Math.atan2(-(H.x - G.x), -(H.z - G.z)) : G.fac, vis = t > 55; gardeP.root.visible = false; garde3d.holder.visible = vis; if (vis) garde3d.set(t, G.x, 9.25, G.z, fac, G.mode === "run" ? 3.2 : G.mode === "walk" ? 1.5 : 0); }
       fouleP.forEach((p, i) => { const F = foule[i](t), J = gait(F.mode, F.dist, t, 5 + i), vis = t > 24 && t < 62; p.root.visible = vis; poser2(p, F.x, alt(F.z) || SOL, F.z, F.fac, J); p.setFace(t > EV.choc ? "scared" : "neutral", blinkAt(t, i * 0.3)); });
       [yaminaP, hamidP, gardeP, messP, ...fouleP].forEach((p) => p.orient(c.yaw, p.fac));
     },
