@@ -19,12 +19,16 @@ const Fin = {
     uniform sampler2D tDiffuse; uniform float uTime,uCA,uFlash,uVig,uChaud,uRouge,uPoussiere,uDesat; varying vec2 vUv;
     float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7))) * 43758.5453); }
     void main(){
+      vec2 px = vec2(1.0/1080.0, 1.0/1920.0);
       vec2 c = vUv - 0.5; vec2 ca = c * uCA;
       vec3 col = vec3(texture2D(tDiffuse, vUv + ca).r, texture2D(tDiffuse, vUv).g, texture2D(tDiffuse, vUv - ca).b);
-      col = (col - 0.06) * 1.07 + 0.06;                                         // contraste léger
+      // netteté (unsharp mask, 4 voisins) : fait ressortir les arêtes et la matière, perçu comme plus réel
+      vec3 blur = (texture2D(tDiffuse, vUv + vec2(px.x,0.0)).rgb + texture2D(tDiffuse, vUv - vec2(px.x,0.0)).rgb + texture2D(tDiffuse, vUv + vec2(0.0,px.y)).rgb + texture2D(tDiffuse, vUv - vec2(0.0,px.y)).rgb) * 0.25;
+      col += (col - blur) * 0.4;
+      col = (col - 0.06) * 1.12 + 0.06;                                         // contraste filmique (pivot gris moyen)
       float lum = dot(col, vec3(0.2126, 0.7152, 0.0722));
-      col = mix(vec3(lum), col, 1.12);                                          // couleurs un peu plus riches (look « jeu vidéo »)
-      col += vec3(-0.010, 0.003, 0.016) * (1.0 - smoothstep(0.0, 0.5, lum)) + vec3(0.016, 0.006, -0.012) * smoothstep(0.5, 1.0, lum); // ombres froides, lumières chaudes
+      col = mix(vec3(lum), col, 1.14);                                          // saturation (look « jeu vidéo »)
+      col += vec3(-0.016, 0.002, 0.024) * (1.0 - smoothstep(0.0, 0.5, lum)) + vec3(0.024, 0.009, -0.018) * smoothstep(0.5, 1.0, lum); // split-tone teal/orange : ombres froides, lumières chaudes
       col *= mix(vec3(1.0), vec3(1.07, 1.0, 0.9), uChaud);                      // lumière chaude (soleil, feu)
       float l = dot(col, vec3(0.3,0.59,0.11));
       col = mix(col, vec3(l*1.18, l*0.86, l*0.74), uRouge);                     // ambiance rouge sale (danger)
@@ -60,7 +64,11 @@ export function creerMoteur(canvas: HTMLCanvasElement, out: HTMLCanvasElement, o
 
   const renderOne = (t: number) => {
     const c = o.camera(t);
-    cam.position.set(c.px, c.py, c.pz); cam.rotation.set(c.pitch, c.yaw, c.roll); cam.fov = c.fov; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
+    // caméra tenue à la main : micro-tremblement organique (respiration + pas), amplitude faible, pour casser le rail trop lisse
+    const sh = (c as any).hand ?? 1, b = t * 1.9, p = t * 3.7;
+    const shX = (Math.sin(b) + 0.5 * Math.sin(b * 2.3 + 1)) * 0.003 * sh + Math.sin(p) * 0.0018 * sh;
+    const shY = (Math.cos(b * 0.8 + 2) + 0.5 * Math.sin(b * 1.7)) * 0.0028 * sh + Math.cos(p * 1.1) * 0.0016 * sh;
+    cam.position.set(c.px + Math.sin(b * 0.9) * 0.02 * sh, c.py + Math.sin(b * 1.3 + 1) * 0.02 * sh, c.pz); cam.rotation.set(c.pitch + shY, c.yaw + shX, c.roll + Math.sin(b * 0.7) * 0.0025 * sh); cam.fov = c.fov; cam.updateProjectionMatrix(); cam.updateMatrixWorld();
     world.update(t, cam, c);
     const e = o.effets ? o.effets(t) : {}, u = fin.uniforms;
     u.uTime.value = t * 1.7; u.uCA.value = 0.0012 + (e.ca ?? 0); u.uFlash.value = e.flash ?? 0; u.uVig.value = e.vignette ?? 0.36;
