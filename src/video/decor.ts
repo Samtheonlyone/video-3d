@@ -52,7 +52,7 @@ const COUL_BARQUES = ["#2c6e9b", "#b8322a", "#e8e4dc", "#3a8a6a", "#d8a02a", "#6
 
 export function creerMonde(renderer: any) {
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog("#c4d0dd", 140, 3900); // perspective aérienne : le lointain se voile
+  scene.fog = new THREE.Fog("#d2cdbe", 95, 2700); // brume chaude plus dense (look GTA : hazy) : le lointain se voile, perspective aérienne marquée
   const dmy = new THREE.Object3D();
   const matrice = (im: any, i: number, px: number, py: number, pz: number, sx: number, sy: number, sz: number, rz = 0) => { dmy.position.set(px, py, pz); dmy.rotation.set(0, 0, rz); dmy.scale.set(sx, sy, sz); dmy.updateMatrix(); im.setMatrixAt(i, dmy.matrix); };
   const inst = (g: any, m: any, n: number, dyn = false) => { const im = new THREE.InstancedMesh(g, m, n); im.castShadow = !dyn; im.receiveShadow = true; if (dyn) im.frustumCulled = false; scene.add(im); return im; };
@@ -60,8 +60,8 @@ export function creerMonde(renderer: any) {
   // ------------------------------------------------------------ ciel, soleil bas, nuages
   { const ciel = new THREE.Mesh(new THREE.SphereGeometry(4300, 64, 32), new THREE.MeshBasicMaterial({ map: ASSETS.ciel, side: THREE.BackSide, fog: false })); ciel.rotation.y = 0.69; scene.add(ciel); } // vrai ciel photo, soleil aligné sur la lumière
   { const pm = new THREE.PMREMGenerator(renderer); scene.environment = pm.fromEquirectangular(ASSETS.hdr).texture; pm.dispose(); } // éclairage d'ambiance et reflets réels
-  const hemi = new THREE.HemisphereLight("#d4e4f2", "#9a8466", 0.35); scene.add(hemi);
-  const sun = new THREE.DirectionalLight("#fff0d8", 2.6); sun.castShadow = true; sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 3;
+  const hemi = new THREE.HemisphereLight("#cfe0f2", "#a89070", 0.4); scene.add(hemi);
+  const sun = new THREE.DirectionalLight("#ffd79e", 2.9); sun.castShadow = true; // soleil doré rasant (contre-jour chaud, signature GTA) sun.shadow.mapSize.set(2048, 2048); sun.shadow.radius = 3;
   Object.assign(sun.shadow.camera, { left: -40, right: 40, top: 40, bottom: -40, near: 1, far: 300 }); sun.shadow.bias = -0.0006; scene.add(sun); scene.add(sun.target);
 
   // ------------------------------------------------------------ la mer : vagues autour du port, grande nappe au loin

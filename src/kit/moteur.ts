@@ -27,8 +27,8 @@ const Fin = {
       col += (col - blur) * 0.4;
       col = (col - 0.06) * 1.12 + 0.06;                                         // contraste filmique (pivot gris moyen)
       float lum = dot(col, vec3(0.2126, 0.7152, 0.0722));
-      col = mix(vec3(lum), col, 1.14);                                          // saturation (look « jeu vidéo »)
-      col += vec3(-0.016, 0.002, 0.024) * (1.0 - smoothstep(0.0, 0.5, lum)) + vec3(0.024, 0.009, -0.018) * smoothstep(0.5, 1.0, lum); // split-tone teal/orange : ombres froides, lumières chaudes
+      col = mix(vec3(lum), col, 1.18);                                          // saturation marquée (palette GTA : vibrante)
+      col += vec3(-0.018, 0.004, 0.030) * (1.0 - smoothstep(0.0, 0.5, lum)) + vec3(0.030, 0.014, -0.016) * smoothstep(0.5, 1.0, lum); // split-tone teal/or : ombres froides turquoise, lumières chaudes dorées
       col *= mix(vec3(1.0), vec3(1.07, 1.0, 0.9), uChaud);                      // lumière chaude (soleil, feu)
       float l = dot(col, vec3(0.3,0.59,0.11));
       col = mix(col, vec3(l*1.18, l*0.86, l*0.74), uRouge);                     // ambiance rouge sale (danger)
@@ -58,7 +58,7 @@ export function creerMoteur(canvas: HTMLCanvasElement, out: HTMLCanvasElement, o
   // passe anti-NaN : un seul pixel invalide ferait de grands rectangles noirs dans le bloom
   composer.addPass(new ShaderPass({ uniforms: { tDiffuse: { value: null } }, vertexShader: Fin.vertexShader,
     fragmentShader: `uniform sampler2D tDiffuse; varying vec2 vUv; void main(){ vec4 c = texture2D(tDiffuse, vUv); if (isnan(c.r) || isnan(c.g) || isnan(c.b) || isinf(c.r) || isinf(c.g) || isinf(c.b)) c = vec4(0.0); gl_FragColor = vec4(max(c.rgb, 0.0), 1.0); }` }));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(W / 2, H / 2), 0.35, 0.5, 0.88); composer.addPass(bloom);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(W / 2, H / 2), 0.42, 0.7, 0.80); composer.addPass(bloom); // seuil bas + rayon large : halo brumeux (look GTA : bloomy)
   const fin = new ShaderPass(Fin); composer.addPass(fin); composer.addPass(new OutputPass());
   const octx = out.getContext("2d")!;
 
@@ -74,7 +74,7 @@ export function creerMoteur(canvas: HTMLCanvasElement, out: HTMLCanvasElement, o
     u.uTime.value = t * 1.7; u.uCA.value = 0.0012 + (e.ca ?? 0); u.uFlash.value = e.flash ?? 0; u.uVig.value = e.vignette ?? 0.36;
     u.uChaud.value = e.chaud ?? 0.3; u.uRouge.value = e.rouge ?? 0; u.uPoussiere.value = e.poussiere ?? 0; u.uDesat.value = e.desat ?? 0;
     renderer.toneMappingExposure = (e.exposition ?? 1.0) * 0.8; // ciel HDRI + soleil : on baisse un peu pour ne pas brûler les murs blancs
-    bloom.strength = e.bloom ?? 0.34;
+    bloom.strength = e.bloom ?? 0.42;
     composer.render();
   };
   return {
