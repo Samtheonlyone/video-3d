@@ -1,0 +1,15 @@
+{
+  "moteur": "voicebox",
+  "langue": "fr",
+  "voicebox": {
+    "url": "http://127.0.0.1:17493",
+    "moteur_tts": null,
+    "profils": { "heros": "", "zoe": "", "maman": "", "narrateur": "" }
+  },
+  "elevenlabs": {
+    "cle": "",
+    "modele": "eleven_v3",
+    "voix": { "heros": "", "zoe": "", "maman": "", "narrateur": "" }
+  },
+  "manuel": { "dossier": "voix_brutes" }
+}

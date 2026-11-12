@@ -1,0 +1,96 @@
+{
+  "titre": "ET SI une R|MÉTÉORITE tombait sur Y|TA RUE ?",
+  "saison": "SAISON 1 • ÉPISODE 1",
+  "lignes": [
+    {
+      "id": "z1",
+      "voix": "zoe",
+      "qui": "ZOÉ",
+      "debut": 0.2,
+      "texte": "HÉ ! C'EST QUOI, CE Y|TRUC ?",
+      "dit": "[intriguée] Hé ! C'est quoi, ce truc ?"
+    },
+    {
+      "id": "h1",
+      "voix": "heros",
+      "debut": 2.1,
+      "max": 0.9,
+      "texte": "ÇA TOMBE… SUR R|NOUS !",
+      "dit": "[voix qui tremble] Ça tombe… sur nous !"
+    },
+    {
+      "id": "h2",
+      "voix": "heros",
+      "debut": 3.9,
+      "texte": "B|ZOÉ ! COURS !",
+      "dit": "[crie] Zoé ! Cours !"
+    },
+    {
+      "id": "z2",
+      "voix": "zoe",
+      "qui": "ZOÉ",
+      "debut": 5.3,
+      "texte": "J'AI Y|PEUR ! J'AI Y|PEUR !",
+      "dit": "[pleure, essoufflée] J'ai peur ! J'ai peur !"
+    },
+    {
+      "id": "h3",
+      "voix": "heros",
+      "debut": 6.9,
+      "texte": "CHEZ B|MAMAN ! LA MAISON BLEUE !",
+      "dit": "[essoufflé] Chez Maman ! La maison bleue !"
+    },
+    {
+      "id": "h4",
+      "voix": "heros",
+      "debut": 9.1,
+      "texte": "LE R|FEU ARRIVE ! PLUS VITE !",
+      "dit": "[crie] Le feu arrive ! Plus vite !"
+    },
+    {
+      "id": "z3",
+      "voix": "zoe",
+      "qui": "ZOÉ",
+      "debut": 12.4,
+      "texte": "AÏE ! MA R|CHEVILLE !",
+      "dit": "[cri de douleur] Aïe ! Ma cheville !"
+    },
+    {
+      "id": "m1",
+      "voix": "maman",
+      "qui": "MAMAN",
+      "tag": "(devant la maison)",
+      "debut": 13.7,
+      "texte": "PAR ICI ! VITE !",
+      "dit": "[crie de loin] Par ici ! Vite !"
+    },
+    {
+      "id": "z4",
+      "voix": "zoe",
+      "qui": "ZOÉ",
+      "debut": 15.1,
+      "texte": "ME LAISSE Y|PAS !",
+      "dit": "[pleure] Me laisse pas !"
+    },
+    {
+      "id": "h5",
+      "voix": "heros",
+      "debut": 16.4,
+      "texte": "SI JE LA PORTE… ON EST R|MORTS…",
+      "dit": "[pense à voix haute, essoufflé] Si je la porte… on est morts…"
+    },
+    {
+      "id": "n1",
+      "voix": "narrateur",
+      "debut": 18.9,
+      "texte": "ET TOI, TU FAIS QUOI ?",
+      "dit": "Et toi, tu fais quoi ?"
+    }
+  ],
+  "fin": {
+    "debut": 18.7,
+    "choixA": "Porter Zoé",
+    "choixB": "Courir chercher Maman",
+    "envoie": "ENVOIE ÇA À TA R|SŒUR"
+  }
+}

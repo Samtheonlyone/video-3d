@@ -1,0 +1,277 @@
+{
+  "titre": "ET SI la R|FRANCE n'avait pas colonisé Y|L'ALGÉRIE ?",
+  "saison": "ÉPISODE 1 • ALGER, 1830",
+  "lignes": [
+    {
+      "id": "h1",
+      "voix": "heros",
+      "debut": 0.2,
+      "texte": "B|YAMINA… REGARDE L'HORIZON.",
+      "dit": "[calme, intrigué] Yamina… regarde l'horizon."
+    },
+    {
+      "id": "h2",
+      "voix": "heros",
+      "debut": 3.93,
+      "max": 1.05,
+      "texte": "C'EST QUOI, TOUS CES R|BATEAUX ?",
+      "dit": "[inquiet] C'est quoi, tous ces bateaux ?"
+    },
+    {
+      "id": "y1",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 4.92,
+      "texte": "ALI ! J'AI Y|PEUR !",
+      "dit": "[effrayée] Ali ! J'ai peur !"
+    },
+    {
+      "id": "h3",
+      "voix": "heros",
+      "debut": 6.23,
+      "texte": "ACCROCHE-TOI, B|PETITE SŒUR !",
+      "dit": "[crie] Accroche-toi, petite sœur !"
+    },
+    {
+      "id": "h4",
+      "voix": "heros",
+      "debut": 8.08,
+      "texte": "LA R|FLOTTE ARRIVE !",
+      "dit": "[essoufflé] La flotte arrive !"
+    },
+    {
+      "id": "y2",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 10.02,
+      "texte": "IL Y EN A R|TROP !",
+      "dit": "[pleure] Il y en a trop !"
+    },
+    {
+      "id": "ha1",
+      "voix": "hamid",
+      "qui": "HAMID",
+      "debut": 11.4,
+      "texte": "AU R|SECOURS !",
+      "dit": "[crie, dans l'eau] Au secours !"
+    },
+    {
+      "id": "h5",
+      "voix": "heros",
+      "debut": 13.06,
+      "texte": "ATTRAPE LA R|RAME !",
+      "dit": "[crie] Attrape la rame !"
+    },
+    {
+      "id": "ha2",
+      "voix": "hamid",
+      "qui": "HAMID",
+      "debut": 14.0,
+      "texte": "MERCI… ALLONS-Y !",
+      "dit": "[essoufflé] Merci… Allons-y !"
+    },
+    {
+      "id": "h6",
+      "voix": "heros",
+      "debut": 15.93,
+      "texte": "ON R|RAME ! VITE !",
+      "dit": "[essoufflé] On rame ! Vite !"
+    },
+    {
+      "id": "n1",
+      "voix": "narrateur",
+      "debut": 18.07,
+      "texte": "JUIN 1830. PLUS DE 500 R|NAVIRES FRANÇAIS DEVANT ALGER.",
+      "dit": "[solemn] Juin mille huit cent trente. Plus de cinq cents navires français devant Alger."
+    },
+    {
+      "id": "h7",
+      "voix": "heros",
+      "debut": 21.48,
+      "texte": "JE SUIS LÀ, B|YAMINA.",
+      "dit": "[doux, essoufflé] Je suis là, Yamina."
+    },
+    {
+      "id": "ha3",
+      "voix": "hamid",
+      "qui": "HAMID",
+      "debut": 23.58,
+      "texte": "LE R|PORT EST LÀ !",
+      "dit": "[crie] Le port est là !"
+    },
+    {
+      "id": "h8",
+      "voix": "heros",
+      "debut": 24.36,
+      "max": 1.3,
+      "texte": "ON ACCOSTE ! ACCROCHE-TOI !",
+      "dit": "[crie] On accoste ! Accroche-toi !"
+    },
+    {
+      "id": "h9",
+      "voix": "heros",
+      "debut": 25.76,
+      "texte": "R|COURS, B|YAMINA ! COURS !",
+      "dit": "[crie] Cours, Yamina ! Cours !"
+    },
+    {
+      "id": "y3",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 27.52,
+      "texte": "ALI ! ATTENDS-MOI !",
+      "dit": "[effrayée] Ali ! Attends-moi !"
+    },
+    {
+      "id": "ha4",
+      "voix": "hamid",
+      "qui": "HAMID",
+      "tag": "(au loin)",
+      "debut": 29.35,
+      "fx": "loin",
+      "texte": "À LA R|CASBAH ! COUREZ !",
+      "dit": "[crie de loin] À la Casbah ! Courez !"
+    },
+    {
+      "id": "h10",
+      "voix": "heros",
+      "debut": 31.31,
+      "texte": "PAR ICI ! LA R|RUELLE !",
+      "dit": "[essoufflé] Par ici ! La ruelle !"
+    },
+    {
+      "id": "y4",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 33.33,
+      "texte": "J'AI Y|PEUR !",
+      "dit": "[effrayée] J'ai peur !"
+    },
+    {
+      "id": "h11",
+      "voix": "heros",
+      "debut": 35.22,
+      "texte": "SAUTE ! JE TE R|SOUTIENS !",
+      "dit": "[crie] Saute ! Je te soutiens !"
+    },
+    {
+      "id": "h12",
+      "voix": "heros",
+      "debut": 36.79,
+      "texte": "PLUS VITE !",
+      "dit": "[essoufflé] Plus vite !"
+    },
+    {
+      "id": "y5",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 38.49,
+      "texte": "JE N'EN PEUX R|PLUS !",
+      "dit": "[pleure, essoufflée] Je n'en peux plus !"
+    },
+    {
+      "id": "y6",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 40.57,
+      "texte": "AÏE ! MA R|JAMBE !",
+      "dit": "[cri de douleur] Aïe ! Ma jambe !"
+    },
+    {
+      "id": "h13",
+      "voix": "heros",
+      "debut": 42.12,
+      "texte": "APPUIE-TOI SUR MOI.",
+      "dit": "[doux, essoufflé] Appuie-toi sur moi."
+    },
+    {
+      "id": "y7",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 43.9,
+      "texte": "ILS VONT NOUS R|ATTRAPER ?",
+      "dit": "[pleure] Ils vont nous attraper ?"
+    },
+    {
+      "id": "h14",
+      "voix": "heros",
+      "debut": 45.9,
+      "texte": "NON. JE TE R|PROTÈGE.",
+      "dit": "[ferme, essoufflé] Non. Je te protège."
+    },
+    {
+      "id": "h14b",
+      "voix": "heros",
+      "debut": 48.21,
+      "texte": "ENCORE UN PEU… TIENS BON !",
+      "dit": "[essoufflé] Encore un peu… Tiens bon !"
+    },
+    {
+      "id": "y8",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 51.0,
+      "texte": "ILS VONT OÙ, ALI ?",
+      "dit": "[petite voix] Ils vont où, Ali ?"
+    },
+    {
+      "id": "h15",
+      "voix": "heros",
+      "debut": 53.0,
+      "texte": "JE NE SAIS PAS… B|PETITE SŒUR.",
+      "dit": "[doux, triste] Je ne sais pas… petite sœur."
+    },
+    {
+      "id": "m1",
+      "voix": "messager",
+      "qui": "MESSAGER",
+      "debut": 55.5,
+      "texte": "ILS DÉBARQUENT À R|L'OUEST !",
+      "dit": "[crie en courant] Ils débarquent à l'ouest !"
+    },
+    {
+      "id": "y9",
+      "voix": "yamina",
+      "qui": "YAMINA",
+      "debut": 58.0,
+      "texte": "ALI… ILS Y|ARRIVENT.",
+      "dit": "[murmure] Ali… Ils arrivent."
+    },
+    {
+      "id": "g1",
+      "voix": "garde",
+      "qui": "GARDE",
+      "debut": 60.8,
+      "texte": "TOI ! VA DONNER R|L'ALERTE !",
+      "dit": "[crie, autoritaire] Toi ! Va donner l'alerte !"
+    },
+    {
+      "id": "h16",
+      "voix": "heros",
+      "debut": 62.97,
+      "texte": "SI JE PARS… ELLE R|RESTE SEULE.",
+      "dit": "[pense à voix haute, tremble] Si je pars… elle reste seule."
+    },
+    {
+      "id": "h17",
+      "voix": "heros",
+      "debut": 65.1,
+      "max": 1.4,
+      "texte": "SI JE RESTE… LA R|VILLE ?",
+      "dit": "[pense à voix haute] Si je reste… la ville ?"
+    },
+    {
+      "id": "n2",
+      "voix": "narrateur",
+      "debut": 67.2,
+      "texte": "ET TOI, TU FAIS QUOI ?",
+      "dit": "[serious] Et toi... [pause] tu fais quoi ?"
+    }
+  ],
+  "fin": {
+    "debut": 66.6,
+    "choixA": "Donner l'alerte",
+    "choixB": "Sauver Yamina",
+    "envoie": "ENVOIE ÇA À TON POTE QUI AIME R|L'HISTOIRE"
+  }
+}
