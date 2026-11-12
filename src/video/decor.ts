@@ -13,7 +13,7 @@ import { ASSETS, tex, pbr } from "../kit/assets";
 
 // photos CC0 (Poly Haven) et ciel HDRI réel : chargés avant la première image
 const jeu = (nom: string, f: string) => ({ [nom + "_diff"]: `assets/${f}_diff.jpg`, [nom + "_nor"]: `assets/${f}_nor_gl.jpg`, [nom + "_rough"]: `assets/${f}_rough.jpg` });
-export const FICHIERS: Record<string, string> = { hdr: "assets/ciel.hdr", ciel: "assets/ciel.jpg", eau: "assets/eau_normal.jpg", perso_test: "assets/perso_test.glb",
+export const FICHIERS: Record<string, string> = { hdr: "assets/ciel.hdr", ciel: "assets/ciel.jpg", eau: "assets/eau_normal.jpg", perso_test: "assets/perso_test.glb", femme: "assets/femme.glb", matt: "assets/matt.glb", soldier_male: "assets/soldier_male.glb", knight_male: "assets/knight_male.glb",
   ...jeu("stuc", "white_stucco"), ...jeu("argile", "clay_plaster"), ...jeu("pave", "cobblestone_floor_04"), ...jeu("dalles", "seaworn_stone_tiles"), ...jeu("bois", "brown_planks_05") };
 const V2 = (x: number, y = x) => new THREE.Vector2(x, y);
 
@@ -206,10 +206,10 @@ export function creerMonde(renderer: any) {
 
   // ------------------------------------------------------------ personnages
   const yaminaP = mkFlat(scene, { skin: "#c89a6e", hair: "#1a1008", hairStyle: "long", female: true, kid: true, shirt: "#a8432e", shirt2: "#a8432e", pants: "#e3d5b8", shoes: "#5a3e26", scale: 0.72, scarf: "#2a5a6a" });
-  const yamina3d = perso3d(scene, "perso_test", { ech: 0.5, couleur: "#a8432e", offsetYaw: 0 }); // Yamina en vrai modèle 3D (tunique rouge, taille enfant)
-  const hamid3d = perso3d(scene, "perso_test", { ech: 0.62, couleur: "#b8322a", offsetYaw: 0 }); // Hamid 3D (sur terre)
-  const garde3d = perso3d(scene, "perso_test", { ech: 0.64, couleur: "#7e2620", offsetYaw: 0 }); // le garde 3D
-  const mess3d = perso3d(scene, "perso_test", { ech: 0.6, couleur: "#d9c8a0", offsetYaw: 0 }); // le messager 3D // ESSAI : vrai modèle 3D riggé à la place de Yamina (~1,5 m)
+  const yamina3d = perso3d(scene, "femme", { ech: 0.5, offsetYaw: 3.14159, calePieds: false }); // PROTOTYPE : Yamina = vraie humaine Casual_Female (matériaux natifs), clips Idle/Walk/Run/SitDown
+  const hamid3d = perso3d(scene, "matt", { ech: 1.06, offsetYaw: 3.14159, calePieds: false }); // Hamid 3D (sur terre)
+  const garde3d = perso3d(scene, "soldier_male", { ech: 0.53, offsetYaw: 3.14159, calePieds: false }); // le garde 3D
+  const mess3d = perso3d(scene, "knight_male", { ech: 0.49, offsetYaw: 3.14159, calePieds: false }); // le messager 3D // ESSAI : vrai modèle 3D riggé à la place de Yamina (~1,5 m)
   const hamidP = mkFlat(scene, { skin: "#b8845a", hair: "#2a1a10", beard: true, stubble: true, wrinkle: true, shirt: "#b8322a", pants: "#e8e0d0", hat: "#f2ede0" });
   const gardeP = mkFlat(scene, { skin: "#b88a62", hair: "#1a1008", beard: true, shirt: "#7e2620", pants: "#e3dccb", hat: "#b8302a", build: 1.1 });
   const messP = mkFlat(scene, { skin: "#c89a6e", hair: "#1a1008", stubble: true, shirt: "#d9c8a0", pants: "#7a6a50", hat: "#f2ede0" });
