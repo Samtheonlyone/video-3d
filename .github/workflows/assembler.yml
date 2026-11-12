@@ -17,6 +17,7 @@ jobs:
           github-token: ${{ github.token }}
           pattern: p-*
           path: morceaux
+      - run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - run: |
           for d in $(ls morceaux | sort -t- -k2 -n); do echo "file '$PWD/morceaux/$d/p.mp4'" >> liste.txt; done
           cat liste.txt
