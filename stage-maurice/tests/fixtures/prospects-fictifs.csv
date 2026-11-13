@@ -1,0 +1,7 @@
+entreprise,secteur,taille_salaries,region,signal,poste_decideur,note
+Exemple Logistique SA,logistique,320,auvergne-rhône-alpes,offres ouvertes depuis 60 jours,DRH,fictif
+Démo Industrie SAS,industrie,95,hauts-de-france,recrutement en volume,Responsable recrutement,fictif
+Test Numérique SARL,numérique,12,île-de-france,croissance,CEO,fictif
+Fictif Commerce SA,commerce,2500,bretagne,,,fictif
+Faux BTP SAS,btp,not_a_number,occitanie,ouverture de site,Dirigeant,fictif
+Exemple Santé SA,santé,410,normandie,levée de fonds,Directeur des ressources humaines,fictif

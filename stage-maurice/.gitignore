@@ -1,0 +1,10 @@
+# Données de travail potentiellement confidentielles (Succexa / prospects) : jamais commitées par défaut
+documents/entrant/*
+documents/sortant/*
+documents/corbeille/*
+logs/*
+suivi/taches.json
+suivi/index.html
+rapports/*
+tests/sorties/
+!**/.gitkeep
