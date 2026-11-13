@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "ask": [
+      "mcp__Gmail__send_message",
+      "mcp__Gmail__reply",
+      "mcp__Gmail__forward",
+      "mcp__Google_Drive__share_file",
+      "mcp__Google_Calendar__create_event",
+      "mcp__Google_Calendar__update_event",
+      "mcp__Google_Calendar__respond_to_event",
+      "mcp__Metricool_Social_Media_Management__createScheduledPost",
+      "mcp__Metricool_Social_Media_Management__updateScheduledPost",
+      "mcp__Orshot__orshot_publish_social_post",
+      "mcp__Orshot__orshot_publish_social_draft",
+      "mcp__vidIQ__vidiq_social_post_publish",
+      "mcp__Firecrawl__alexandria_library_read",
+      "mcp__Firecrawl__firecrawl_agent",
+      "mcp__Firecrawl__people_company_enrich",
+      "mcp__Firecrawl__firecrawl_crawl"
+    ],
+    "deny": [
+      "mcp__Gmail__trash_message",
+      "mcp__Gmail__trash_thread",
+      "mcp__Gmail__delete_draft",
+      "mcp__Google_Drive__trash_file",
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)"
+    ]
+  }
+}

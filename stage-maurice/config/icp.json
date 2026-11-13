@@ -1,0 +1,10 @@
+{
+  "_avertissement": "HYPOTHÈSES DE DÉPART à valider avec le tuteur (Siddicq Phoolchand). Ne pas présenter comme des faits.",
+  "poids": {"secteur": 30, "taille": 20, "signal": 25, "decideur": 15, "region": 10},
+  "secteurs_prioritaires": ["logistique", "industrie", "santé", "numérique", "btp"],
+  "secteurs_secondaires": ["commerce", "hôtellerie-restauration", "services aux entreprises"],
+  "taille_salaries": [50, 1000],
+  "signaux": ["offres ouvertes", "recrutement en volume", "croissance", "levée de fonds", "ouverture de site", "poste vacant"],
+  "decideurs": ["drh", "responsable recrutement", "directeur des ressources humaines", "talent acquisition", "dirigeant", "ceo", "pdg"],
+  "regions": ["île-de-france", "auvergne-rhône-alpes", "hauts-de-france", "occitanie", "nouvelle-aquitaine"]
+}
