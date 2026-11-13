@@ -1,0 +1,90 @@
+{
+  "titre": "ET SI LE SIÈCLE NE S'ÉTAIT PAS EFFONDRÉ ?",
+  "saison": "HISTOIRE ALTERNATIVE",
+  "lignes": [
+    {
+      "id": "n1",
+      "voix": "narrateur",
+      "debut": 0.5,
+      "texte": "PARIS, 2045.",
+      "dit": "[calme] Paris, 2045. Une question que personne ne pose plus."
+    },
+    {
+      "id": "z1",
+      "voix": "zoe",
+      "debut": 5.94,
+      "texte": "PAPI, ET SI LE SIÈCLE DERNIER NE S'ÉTAIT PAS EFFONDRÉ ?",
+      "dit": "[curieuse] Papi, et si le siècle dernier ne s'était pas effondré ?"
+    },
+    {
+      "id": "h1",
+      "voix": "heros",
+      "debut": 9.86,
+      "texte": "TU VEUX DIRE, SANS LES DEUX GUERRES MONDIALES ?",
+      "dit": "[pensif] Tu veux dire, sans les deux guerres mondiales ?"
+    },
+    {
+      "id": "z2",
+      "voix": "zoe",
+      "debut": 12.19,
+      "texte": "OUI. SANS LA GUERRE DE 14, SANS CELLE DE 39.",
+      "dit": "[calme] Oui. Sans la guerre de quatorze, sans celle de trente-neuf."
+    },
+    {
+      "id": "h2",
+      "voix": "heros",
+      "debut": 17.26,
+      "texte": "PAS DE NAZISME AU POUVOIR. PAS DE SHOAH. SIX MILLIONS DE VIES.",
+      "dit": "[grave] Alors pas de nazisme au pouvoir. Pas de Shoah. Six millions de vies, ma chérie."
+    },
+    {
+      "id": "n2",
+      "voix": "narrateur",
+      "debut": 23.13,
+      "texte": "LE 6 AOÛT 1945, HIROSHIMA.",
+      "dit": "[sobre] Le six août 1945, Hiroshima. Environ cent mille morts à la fin de cette année-là."
+    },
+    {
+      "id": "z3",
+      "voix": "zoe",
+      "debut": 30.57,
+      "texte": "ET SI LA BOMBE N'AVAIT JAMAIS TOMBÉ ?",
+      "dit": "[inquiète] Et si la bombe n'était jamais tombée ?"
+    },
+    {
+      "id": "h3",
+      "voix": "heros",
+      "debut": 33.29,
+      "texte": "PAS DE GUERRE, PAS DE BOMBE. HIROSHIMA AURAIT VÉCU.",
+      "dit": "[triste] Sans la guerre, pas de bombe. Hiroshima aurait continué de vivre."
+    },
+    {
+      "id": "n3",
+      "voix": "narrateur",
+      "debut": 38.42,
+      "texte": "PAS D'ONU NÉE EN 1945. PAS DE COURSE AUX BOMBES.",
+      "dit": "[calme] Pas d'ONU fondée en 1945. Pas de course aux armes nucléaires telle qu'elle a eu lieu."
+    },
+    {
+      "id": "z4",
+      "voix": "zoe",
+      "debut": 45.78,
+      "texte": "DONC LE MONDE SERAIT DIFFÉRENT ?",
+      "dit": "[douce] Donc le monde serait différent ?"
+    },
+    {
+      "id": "h4",
+      "voix": "heros",
+      "debut": 47.7,
+      "texte": "AUTRE, SÛREMENT. MEILLEUR ? PERSONNE NE LE SAIT.",
+      "dit": "[sourit doucement] Autre, sûrement. Meilleur ? Personne ne le sait."
+    },
+    {
+      "id": "n4",
+      "voix": "narrateur",
+      "debut": 53.38,
+      "texte": "FICTION. L'HISTOIRE RÉELLE A COÛTÉ CHER.",
+      "dit": "[solennel] Ceci est une fiction. L'histoire réelle a coûté très cher. Elle mérite d'être racontée."
+    }
+  ]
+}
