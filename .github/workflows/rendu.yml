@@ -1,5 +1,7 @@
 name: Rendu
 on:
+  push:
+    paths: ["src/fin/**", "audio/fin.aac", ".github/workflows/rendu.yml"]
   workflow_dispatch:
     inputs:
       debut: { description: "première image", default: "0" }
@@ -14,7 +16,7 @@ jobs:
     steps:
       - id: m
         run: |
-          a=${{ inputs.debut }}; f=${{ inputs.fin }}; p=${{ inputs.pas }}; out="["
+          a=${{ inputs.debut || 0 }}; f=${{ inputs.fin || 2639 }}; p=${{ inputs.pas || 75 }}; out="["
           while [ $a -le $f ]; do b=$((a+p-1)); [ $b -gt $f ] && b=$f; out="$out\"$a-$b\","; a=$((b+1)); done
           echo "morceaux=${out%,}]" >> $GITHUB_OUTPUT
   rendre:
@@ -31,22 +33,6 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: "22", cache: npm }
       - run: npm ci
-      - run: npx remotion render src/index.ts ${{ inputs.compo }} p.mp4 --gl=swangle --codec h264 --crf 18 --muted --concurrency=2 --timeout 600000 --frames=${{ matrix.morceau }}
+      - run: npx remotion render src/index.ts ${{ inputs.compo || 'Fin' }} p.mp4 --gl=swangle --codec h264 --crf 18 --muted --concurrency=2 --timeout 600000 --frames=${{ matrix.morceau }}
       - uses: actions/upload-artifact@v4
         with: { name: "p-${{ matrix.morceau }}", path: p.mp4, retention-days: 3 }
-  assembler:
-    needs: rendre
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: "22", cache: npm }
-      - run: npm ci
-      - uses: actions/download-artifact@v4
-        with: { path: morceaux }
-      - run: npx remotion render src/index.ts ${{ inputs.compo }} son.aac --codec=aac --gl=swangle
-      - run: |
-          for d in $(ls morceaux | sort -t- -k2 -n); do echo "file '$PWD/morceaux/$d/p.mp4'" >> liste.txt; done
-          ffmpeg -y -f concat -safe 0 -i liste.txt -i son.aac -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k video.mp4
-      - uses: actions/upload-artifact@v4
-        with: { name: video, path: video.mp4, retention-days: 7 }
