@@ -1,0 +1,17 @@
+{
+  "titre": "ET SI LA FIN DU MONDE ARRIVAIT COMME DANS LE CORAN ?",
+  "saison": "RÉCIT DE CROYANCE",
+  "lignes": [
+    { "id": "f1", "voix": "narrateur", "debut": 0.8, "texte": "UNE PLAGE, UN JOUR COMME LES AUTRES.", "dit": "[calme] Une plage, un jour comme les autres. Selon le Coran et les hadiths authentiques, la fin du monde ne prévient pas." },
+    { "id": "f2", "voix": "narrateur", "debut": 10.3, "texte": "QUAND LE SOLEIL SERA ENROULÉ, QUAND LES ÉTOILES SERONT TERNIES.", "dit": "[grave] Sourate quatre-vingt-un. Quand le soleil sera enroulé. Quand les étoiles seront ternies." },
+    { "id": "f3", "voix": "narrateur", "debut": 19.2, "texte": "LES MONTAGNES SERONT COMME DE LA LAINE CARDÉE.", "dit": "[grave] Sourate cent un. Les montagnes seront comme de la laine cardée." },
+    { "id": "g4", "voix": "narrateur", "debut": 25.5, "texte": "L'HEURE NE VIENDRA PAS AVANT QUE LES SÉISMES SOIENT TRÈS FRÉQUENTS.", "dit": "[grave] Le Prophète, paix sur lui, a dit : l'Heure ne viendra pas avant que les séismes soient très fréquents. Boukhari, mille trente-six." },
+    { "id": "f4", "voix": "narrateur", "debut": 35.3, "texte": "LA TERRE SERA SECOUÉE DE SON GRAND TREMBLEMENT.", "dit": "[grave] Sourate quatre-vingt-dix-neuf. La terre sera secouée de son grand tremblement." },
+    { "id": "g5", "voix": "narrateur", "debut": 41, "texte": "UN FEU SORTIRA DE LA TERRE DU HEDJAZ.", "dit": "[grave] Il a dit aussi : un feu sortira de la terre du Hedjaz. Boukhari, sept mille cent dix-huit." },
+    { "id": "f5", "voix": "narrateur", "debut": 50.2, "texte": "ET LES MERS SERONT EMBRASÉES.", "dit": "[grave] Sourate quatre-vingt-un. Et les mers seront embrasées." },
+    { "id": "f6", "voix": "narrateur", "debut": 56.5, "texte": "ALORS LA TROMPETTE RETENTIRA.", "dit": "[solennel] Sourate trente-neuf. Alors la Trompette retentira. Tout ce qui est dans les cieux et sur la terre s'évanouira." },
+    { "id": "g7", "voix": "narrateur", "debut": 66, "texte": "ENTRE LES DEUX SOUFFLES, IL Y AURA QUARANTE.", "dit": "[doux] Entre les deux souffles, dit le Prophète, il y aura quarante. Le texte ne précise pas l'unité. Boukhari, quatre mille huit cent quatorze." },
+    { "id": "f7", "voix": "narrateur", "debut": 77, "texte": "PUIS TOUS SE LÈVERONT. LA SUITE APPARTIENT À LA FOI.", "dit": "[doux] Puis tous se lèveront. La suite appartient à la foi." },
+    { "id": "f8", "voix": "narrateur", "debut": 82.5, "texte": "RÉCIT DE CROYANCE MUSULMANE, PRÉSENTÉ AVEC RESPECT.", "dit": "[sobre] Récit de croyance musulmane, présenté avec respect." }
+  ]
+}
