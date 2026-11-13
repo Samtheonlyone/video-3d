@@ -7,6 +7,8 @@ import { smooth } from "../kit/outils";
 import { creerMonde, camera, effets, FICHIERS, T } from "./decor";
 import { chargerAssets } from "../kit/assets";
 import { LIGNES, VOIX } from "./lignes";
+import { loadFont as chargerArabe } from "@remotion/google-fonts/AmiriQuran";
+const { fontFamily: ARABE } = chargerArabe("normal", { weights: ["400"], subsets: ["arabic"] });
 
 const SERIF = "Georgia, 'Times New Roman', serif";
 const BRUITS: Bruit[] = [
@@ -17,17 +19,17 @@ const BRUITS: Bruit[] = [
   [19.7, "debris", 0.5], [21.5, "debris", 0.45], [43, "explosion", 0.4], [46, "debris", 0.5],
   [T.trompette - 0.1, "explosion", 1], [T.trompette + 0.1, "explosion", 1],
 ];
-// HUD : [début, fin, étiquette, valeur]
+// HUD : [début, fin, étiquette, valeur, texte arabe (versets d'Uthmani, tanzil/alquran.cloud ; hadiths : sunnah.com)]
 const BK = "HADITH · SAHIH AL-BUKHARI";
-const HUD: [number, number, string, string][] = [
-  [10.3, 19, "SOURATE 81 · AT-TAKWIR", "81 : 1-2"],
-  [19.2, 25, "SOURATE 101 · AL-QARI'A", "101 : 5"],
-  [25.5, 34.7, BK, "n° 1036"],
-  [35.3, 41, "SOURATE 99 · AZ-ZALZALA", "99 : 1"],
-  [41.6, 49.1, BK, "n° 7118"],
-  [50.2, 55.2, "SOURATE 81 · AT-TAKWIR", "81 : 6"],
-  [56.5, 64.2, "SOURATE 39 · AZ-ZUMAR", "39 : 68"],
-  [66, 75.8, BK, "n° 4814"],
+const HUD: [number, number, string, string, string][] = [
+  [10.3, 19, "SOURATE 81 · AT-TAKWIR", "81 : 1-2", "إِذَا الشَّمْسُ كُوِّرَتْ\nوَإِذَا النُّجُومُ انْكَدَرَتْ"],
+  [19.2, 25, "SOURATE 101 · AL-QARI'A", "101 : 5", "وَتَكُونُ الْجِبَالُ كَالْعِهْنِ الْمَنْفُوشِ"],
+  [25.5, 34.7, BK, "n° 1036", "… وَتَكْثُرَ الزَّلَازِلُ …"],
+  [35.3, 41, "SOURATE 99 · AZ-ZALZALA", "99 : 1", "إِذَا زُلْزِلَتِ الْأَرْضُ زِلْزَالَهَا"],
+  [41.6, 49.1, BK, "n° 7118", "… تَخْرُجَ نَارٌ مِنْ أَرْضِ الْحِجَازِ …"],
+  [50.2, 55.2, "SOURATE 81 · AT-TAKWIR", "81 : 6", "وَإِذَا الْبِحَارُ سُجِّرَتْ"],
+  [56.5, 64.2, "SOURATE 39 · AZ-ZUMAR", "39 : 68", "وَنُفِخَ فِي الصُّورِ فَصَعِقَ مَنْ فِي السَّمَاوَاتِ وَمَنْ فِي الْأَرْضِ إِلَّا مَنْ شَاءَ اللَّهُ"],
+  [66, 75.8, BK, "n° 4814", "… بَيْنَ النَّفْخَتَيْنِ أَرْبَعُونَ …"],
 ];
 const capitale = (s: string) => { const m = s.toLowerCase(); return m.charAt(0).toUpperCase() + m.slice(1).replace(/\bsourate\b/g, "Sourate"); };
 
@@ -58,6 +60,7 @@ export const Fin: React.FC = () => {
       {hud && <div style={{ position: "absolute", left: 60, top: 540, opacity: op(hud[0], hud[1]), textShadow: ombre }}>
         <div style={{ fontFamily: "Arial, sans-serif", fontSize: 24, letterSpacing: "0.22em", opacity: 0.85 }}>{hud[2]}</div>
         <div style={{ fontSize: 78, lineHeight: 1.1 }}>{hud[3]}</div></div>}
+      {hud && <div dir="rtl" style={{ position: "absolute", left: 60, right: 60, top: 760, textAlign: "center", fontFamily: ARABE, fontSize: hud[4].length > 60 ? 62 : 84, lineHeight: 1.7, color: "#f5d28a", opacity: op(hud[0], hud[1]), whiteSpace: "pre-line", textShadow: ombre }}>{hud[4]}</div>}
       {ligne && t < T.noir[0] && <div style={{ position: "absolute", left: 70, right: 70, top: 1430, textAlign: "center", fontStyle: "italic", fontSize: 54, lineHeight: 1.25, opacity: Math.min(smooth(ligne.t0 - 0.1, ligne.t0 + 0.3, t), 1 - smooth(ligne.t1, ligne.t1 + 0.4, t)), textShadow: ombre }}>{capitale(ligne.texte)}</div>}
       <div style={{ position: "absolute", inset: 0, background: "#0d0d12", opacity: noir, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: 90, textAlign: "center" }}>
         <div style={{ fontSize: 66, lineHeight: 1.2, opacity: smooth(86, 87, t) }}>Et si la fin du monde arrivait comme dans le Coran ?</div>
